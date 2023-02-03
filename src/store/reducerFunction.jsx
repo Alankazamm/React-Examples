@@ -1,15 +1,26 @@
-import { createStore } from 'redux'; // Notice that the createStore function is deprecated, //jslint-ignore-line
-const formReducer = (state = { width: 20} , action) => { // a better and modern alternative is to use configureStore instead
-    switch(action.type) {
+import { createStore } from 'redux';
+const formReducer = (state, action) => {
+    switch (action.type) {
 
-        case 'increase':
-            return { width: state.width + action.amount };
-        
-        case 'decrease':
-            return {  width: state.width - action.amount };
+        case 'increaseWidth':
+            return {
+                ...state,
+                width: state.width + action.amount
+            };
+
+        case 'decreaseWidth':
+            return {
+                ...state,
+                width: state.width - action.amount
+            };
+        case 'increaseHeight':
+            return {
+                ...state,
+                height: state.height + action.amount
+            };
         default:
             return state;
     }
 }
 
-export const store = createStore(formReducer) // 👈 I passed the initial state right here
+export const store = createStore(formReducer, { width: 40, height: 40 }) // 👈 I've passed the initial state right here
