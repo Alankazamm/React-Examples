@@ -1,24 +1,50 @@
+import { useSelector, useDispatch } from 'react-redux';
 
+const App = () => {
+  const width = useSelector((state) => state.width);
+  const height = useSelector((state) => state.height);
 
-import { useDispatch, useSelector } from 'react-redux'
-import './App.css'
-
-function App() {
-  const width = useSelector(state => state.width);
   const dispatch = useDispatch();
   const clickHandler = (e) => {
-    e.target.id === 'increase' ? dispatch({ type: 'increase', amount: 20, }) :
-      dispatch({ type: 'decrease', amount: 10, });
-    return;
-}
+    switch (e.target.id) {
+      case 'increaseWidth':
+        dispatch({ type: 'increaseWidth', amount: 20 });
+        break;
+      case 'decreaseWidth':
+        dispatch({ type: 'decreaseWidth', amount: 20 });
+        break;
+      case 'increaseHeight':
+        dispatch({ type: 'increaseHeight', amount: 20 });
+        break;
+    }
+  }
 
   return (
-    <div className="App">
-      <div style={{ background: 'teal', height: '40px', width: width }}></div>
-      <button id='increase' onClick={clickHandler}>Increase</button>
-      <button id='decrease' onClick={clickHandler}>Decrease</button>
-    </div>
-  )
+    <>
+      <div style={{
+        background: 'teal',
+        height: height,
+        width: width
+      }}>
+      </div>
+      <div style={{ marginTop: '3rem' }}>
+        <button id="increaseWidth"
+          onClick={clickHandler}>
+          Increase bar width
+        </button>
+
+        <button id="decreaseWidth"
+          onClick={clickHandler}>
+          Decrease bar width
+        </button>
+        <button id="increaseHeight"
+          onClick={clickHandler}>
+          Increase bar height
+        </button>
+      </div>
+    </>
+  );
+  
 }
 
-export default App
+export default App;
