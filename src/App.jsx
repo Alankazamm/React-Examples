@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { divActions } from './store/reducerFunction';
 
 const App = () => {
   const width = useSelector((state) => state.width);
@@ -8,13 +9,13 @@ const App = () => {
   const clickHandler = (e) => {
     switch (e.target.id) {
       case 'increaseWidth':
-        dispatch({ type: 'increaseWidth', amount: 20 });
+        dispatch(divActions.increaseWidth(20));
         break;
       case 'decreaseWidth':
-        dispatch({ type: 'decreaseWidth', amount: 20 });
+        dispatch(divActions.decreaseWidth(10));
         break;
       case 'increaseHeight':
-        dispatch({ type: 'increaseHeight', amount: 20 });
+        dispatch(divActions.increaseHeight(20));
         break;
     }
   }

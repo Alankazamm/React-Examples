@@ -1,26 +1,27 @@
-import { createStore } from 'redux';
-const formReducer = (state, action) => {
-    switch (action.type) {
 
-        case 'increaseWidth':
-            return {
-                ...state,
-                width: state.width + action.amount
-            };
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-        case 'decreaseWidth':
-            return {
-                ...state,
-                width: state.width - action.amount
-            };
-        case 'increaseHeight':
-            return {
-                ...state,
-                height: state.height + action.amount
-            };
-        default:
-            return state;
+const initialState = { width: 40, height: 40 };
+
+const divSlice = createSlice(
+    {
+        name: 'divChange',
+        initialState: initialState,
+        reducers: {
+            increaseWidth(state, action) {
+                state.width = state.width + action.payload
+            },
+            decreaseWidth(state, action) {
+               state.width = state.width - action.payload
+            },
+            increaseHeight(state, action) {
+                state.height = state.height + action.payload
+            }
+        }
     }
-}
+)
+export const divActions = divSlice.actions;
 
-export const store = createStore(formReducer, { width: 40, height: 40 }) // 👈 I've passed the initial state right here
+export const store = configureStore({
+    reducer: divSlice.reducer,
+})
