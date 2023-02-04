@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
+import React from 'react'
+import { State } from './store/reducerFunction';
 
 const App = () => {
-  const width = useSelector((state) => state.width);
-  const height = useSelector((state) => state.height);
+  const width = useSelector((state:State) => state.width);
+  const height = useSelector((state:State) => state.height);
 
   const dispatch = useDispatch();
   const clickHandler = (e) => {
