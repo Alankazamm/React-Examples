@@ -10,13 +10,13 @@ const App = () => {
   const clickHandler = (e) => {
     switch (e.target.id) {
       case 'increaseWidth':
-        dispatch({ type: 'increaseWidth', amount: 20 });
+        dispatch({ type: 'INCREASE_WIDTH', amount: 20 });
         break;
       case 'decreaseWidth':
-        dispatch({ type: 'decreaseWidth', amount: 20 });
+        dispatch({ type: 'DECREASE_WIDTH', amount: 20 });
         break;
       case 'increaseHeight':
-        dispatch({ type: 'increaseHeight', amount: 20 });
+        dispatch({ type: 'SET_HEIGHT', amount: 20 });
         break;
     }
   }
